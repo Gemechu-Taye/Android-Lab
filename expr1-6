@@ -1,0 +1,730 @@
+Gemechu Taye 20BTRCM027
+Android Lab 
+Lab 1. Installation of Android Studio and display Hello World
+
+
+UI design XML
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:layout_width="133dp"
+       android:layout_height="39dp"
+       android:text="Hello World!"
+       android:textSize="20sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:layout_width="316dp"
+       android:layout_height="102dp"
+       android:layout_marginEnd="88dp"
+       android:layout_marginBottom="640dp"
+       android:text="GemechuTaye (20BTRCM027)"
+       android:textSize="34sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+Java Code
+
+
+package com.example.myapplication1;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.example.helloworld.R;
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+   }
+}
+
+
+
+
+Sample 
+
+
+
+
+Lab 2. Add two edit texts. When a number is entered in Edit Text 1, the square of that number should be displayed in Edit Text 2.x
+UI design XML 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity"
+   android:padding="90dp"
+   android:orientation="vertical">
+
+   <TextView
+       android:layout_width="122dp"
+       android:layout_height="32dp"
+       android:text="Gemechu Taye (20BTRCM0277)" />
+
+   <EditText
+       android:id="@+id/num"
+       android:layout_width="200dp"
+       android:layout_height="60dp"
+       android:inputType="number"
+       android:hint="Number"
+       android:textSize="20sp" />
+   <TextView
+       android:layout_width="200dp"
+       android:layout_height="50dp"
+       android:hint="Square"
+       android:textSize="20sp"
+       android:id="@+id/sqr"/>
+
+
+
+</LinearLayout>
+
+
+
+
+
+Java Code
+package com.example.edit_text;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+   EditText num;
+   TextView sqr;
+   @SuppressLint("MissingInflatedId")
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+       num = findViewById(R.id.num);
+       sqr = findViewById(R.id.sqr);
+       TextWatcher textWatcher = new TextWatcher() {
+           @Override
+           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+           }
+
+           @Override
+           public void onTextChanged(CharSequence s, int start, int before, int count) {
+               int number = Integer.parseInt(num.getText().toString());
+               sqr.setText(String.valueOf(number * number));
+           }
+
+           @Override
+           public void afterTextChanged(Editable s) {
+
+           }
+       };
+       num.addTextChangedListener(textWatcher);
+   }
+}
+
+
+Sample 
+
+
+
+
+
+Lab 3. Add an EditText and a button. When the button is clicked, the inputted in EditText should be retrieved and displayed back to the user.
+
+UI design XML
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:backgroundTint="?android:attr/colorFocusedHighlight"
+   tools:context=".MainActivity">
+
+   <TextView
+       android:layout_width="363dp"
+       android:layout_height="77dp"
+       android:layout_marginStart="24dp"
+       android:layout_marginTop="16dp"
+       android:text="Gemechu Taye (20BTRCM027)"
+       android:textSize="24sp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:id="@+id/txtMessage"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Hello!"
+       android:textColor="#757575"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <Button
+       android:id="@+id/btnhello"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:onClick="onBtnClick"
+       android:text="Button"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.651"
+       tools:ignore="OnClick" />
+
+   <EditText
+       android:id="@+id/editName"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="70dp"
+       android:ems="10"
+       android:hint="Insert Your Name"
+       android:inputType="textPersonName"
+       android:minHeight="48dp"
+       android:textColorHint="#757575"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+Java Code
+
+package com.example.button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+
+   }
+   public void onBtnClick (View view){
+       TextView txtHello = findViewById(R.id.txtMessage);
+       EditText editTxt = findViewById(R.id.editName);
+       String name =  editTxt.getText().toString();
+       txtHello.setText("Hello " + name);
+   }
+}
+
+
+
+
+
+Sample 
+
+
+
+Lab 4. Add two EditText and a button. When the button is clicked, the inputted in Edit Tex 1 should be retrieved and displayed in EditTex2.
+UI design XML
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+   <TextView
+       android:layout_width="378dp"
+       android:layout_height="74dp"
+       android:layout_marginTop="16dp"
+       android:text="Gemechu Taye (20BTRCM027)"
+       android:textSize="24sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="First Name"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.776" />
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Last Name"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.831" />
+
+   <TextView
+       android:id="@+id/textView3"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Email"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.884" />
+
+   <Button
+       android:id="@+id/button"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="REGISTER"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.647"
+       android:onClick="buttonClicked"
+       tools:ignore="UsingOnClickInXml" />
+
+   <EditText
+       android:id="@+id/firstName"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:hint="First Name"
+       android:inputType="textPersonName"
+       android:minHeight="48dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.357" />
+
+   <EditText
+       android:id="@+id/lastName"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:hint="Last Name"
+       android:inputType="textPersonName"
+       android:minHeight="48dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.457"
+       tools:ignore="DuplicateSpeakableTextCheck" />
+
+   <EditText
+       android:id="@+id/mail"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:hint="mail"
+       android:inputType="textEmailAddress"
+       android:minHeight="48dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.562" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+Java Code
+package com.example.register;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.register.R;
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       Toast.makeText(this, "Welcome to the show", Toast.LENGTH_SHORT).show();
+
+   }
+
+   public void buttonClicked(View view)
+   {
+       TextView NameDisplay = findViewById(R.id.textView2);
+       TextView LastNameDisplay = findViewById(R.id.textView);
+       TextView emailDisplay = findViewById(R.id.textView3);
+
+       EditText fName = findViewById(R.id.firstName);
+       EditText lName = findViewById(R.id.lastName);
+       EditText email = findViewById(R.id.mail);
+
+       NameDisplay.setText("First Name " + fName.getText().toString());
+       LastNameDisplay.setText("Last Name " + lName.getText().toString());
+       emailDisplay.setText("Email ID " + email.getText().toString());
+
+
+
+   }
+}
+
+
+
+
+Sample 
+
+
+
+Lab 5. Program a calculator
+UI design XML
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:paddingBottom="12dp"
+   android:paddingLeft="12dp"
+   android:paddingRight="12dp"
+   android:paddingTop="12dp">
+
+
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:inputType="numberDecimal"
+       android:ems="10"
+       android:id="@+id/num1"
+       android:layout_alignParentTop="true"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:hint="Number 1" />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:inputType="numberDecimal"
+       android:ems="10"
+       android:id="@+id/num2"
+       android:layout_below="@+id/num1"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:hint="Number 2" />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:id="@+id/result"
+       android:layout_below="@+id/num2"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:hint="Result" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="ADD"
+       android:id="@+id/btnsum"
+       android:layout_below="@+id/result"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="47dp" />
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="SUB"
+       android:id="@+id/btnsub"
+       android:layout_below="@+id/btnsum"
+       android:layout_centerHorizontal="true" />
+
+   <TextView
+       android:id="@+id/name"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/btnsub"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentLeft="true"
+       android:layout_centerHorizontal="true"
+       android:layout_marginStart="130dp"
+       android:layout_marginLeft="130dp"
+       android:layout_marginTop="381dp"
+       android:hint="Developer"
+       android:text="Gemechu Taye\n20BTRCM027 "
+       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+</RelativeLayout>
+
+
+Java Code
+package com.example.calc_app;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+   EditText etnum1,etnum2;
+   TextView tvres;
+   Button btnsum,btnsub;
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+       etnum1=(EditText)findViewById(R.id.num1);
+       etnum2=(EditText)findViewById(R.id.num2);
+
+       tvres=(TextView)findViewById(R.id.result);
+
+       btnsum=(Button)findViewById(R.id.btnsum);
+       btnsub=(Button)findViewById(R.id.btnsub);
+
+       btnsum.setOnClickListener(this);
+       btnsub.setOnClickListener(this);
+
+   }
+
+   @Override
+   public void onClick(View v) {
+       float num1=0,num2=0,result=0;
+       num1=Float.parseFloat(etnum1.getText().toString());
+       num2=Float.parseFloat(etnum2.getText().toString());
+
+       switch(v.getId())
+       {
+           case R.id.btnsum:
+               result=num1+num2;
+               break;
+           case R.id.btnsub:
+               result=num1-num2;
+               break;
+       }
+       tvres.setText(" "+result);
+
+   }
+}
+
+
+Sample
+
+
+Lab 6. Create a unit converter for height.
+
+
+UI design XML
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="288dp"
+       android:layout_height="39dp"
+       android:text="HEIGHT CONVERTER"
+       android:textSize="30sp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.094" />
+
+   <EditText
+       android:id="@+id/value1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:layout_marginTop="76dp"
+       android:ems="10"
+       android:hint="Enter inches"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.503"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+   <EditText
+       android:id="@+id/value2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:layout_marginTop="8dp"
+       android:ems="10"
+       android:hint="Enter cm"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/value1" />
+
+   <Button
+       android:id="@+id/convert"
+       android:layout_width="339dp"
+       android:layout_height="42dp"
+       android:layout_marginBottom="8dp"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:layout_marginTop="8dp"
+       android:text="CONVERT"
+       android:textSize="18sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.517"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/value2"
+       app:layout_constraintVertical_bias="0.126" />
+   <Button
+       android:id="@+id/reset"
+       android:layout_width="339dp"
+       android:layout_height="49dp"
+       android:layout_marginBottom="8dp"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:layout_marginTop="8dp"
+       android:text="RESET"
+       android:textSize="18sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.517"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/convert"
+       app:layout_constraintVertical_bias="0.012" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+Java Code
+
+package com.example.unitconverterlab5;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+   EditText v1,v2;
+   Button convert,reset;
+   double val1=0,val2=0;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       v1=findViewById(R.id.value1);
+       v2=findViewById(R.id.value2);
+       convert=findViewById(R.id.convert);
+       reset=findViewById(R.id.reset);
+       convert.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (v1.getText().length() > 0)
+               {
+                   val1=Double.parseDouble(v1.getText().toString());
+                   val2=val1*2.54; // Inch to cm
+               }
+               else if(v2.getText().length() > 0)
+               {
+                   val2=Double.parseDouble(v2.getText().toString());
+                   val1=val2/2.54;  // cm to Inch
+               }
+               else
+
+
+                   Toast.makeText(getApplicationContext(),"please enter a value",Toast.LENGTH_LONG).show();
+                           v1. setText(Double.toString(val1));
+               v2. setText(Double.toString(val2));
+           }
+       });
+
+       reset.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               v1.setText("");
+               v2.setText("");
+           }
+       });
+   }
+}
+
+
+
+Sample
+
+
+
